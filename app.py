@@ -1,3 +1,4 @@
+import os
 import streamlit as st
 import onnxruntime as rt
 from extract_features import generar_datos 
@@ -27,7 +28,6 @@ def main():
         formas_dict = {"Alargado": 0, "Comprimido": 1, "Esf\u00e9rico": 2, "Irregular": 3, "Largo-Oblongo": 4, "Oblongo": 5, "Obovoide": 6, "Ovoide": 7, "Reniforme": 8}
         datos[0] = formas_dict[datos[0]]
         datos = np.array([datos], dtype=np.float32)
-        # st.write(datos)
         session = rt.InferenceSession("random_forest_model.onnx")
         input_name = session.get_inputs()[0].name
         output_name = session.get_outputs()[0].name
@@ -35,8 +35,7 @@ def main():
         st.write("Variedad detectada: ", prediction)
 
 
-
-
-
 if __name__ == "__main__":
-    main()
+    port = int(os.environ.get("PORT", 8501))
+    st._is_running_with_streamlit = False
+    st.run(main, server_port=port)
