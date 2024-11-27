@@ -9,7 +9,7 @@ from PIL import Image
 def main():
     margin = 255
     st.title("Papas app")
-    st.write("¡Predice el tipo de papa entre 21 variedades!")
+    st.write("¡Predice el tipo de papa entre 80 variedades!")
     enable = st.checkbox("Activar cámara")
     file_camera = st.camera_input("Toma una foto", disabled= not enable)
     if file_camera:
