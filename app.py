@@ -57,7 +57,7 @@ def main():
             input_name = session.get_inputs()[0].name
             output_name = session.get_outputs()[0].name
             prediction = session.run([output_name], {input_name: datos})
-            st.markdown("## Variedad nativa detectada: " + str(prediction[0][0]))
+            st.markdown("## Variedad nativa de papa detectada: " + str(prediction[0][0]))
     
 
 
